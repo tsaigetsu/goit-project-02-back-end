@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: ContactsApp
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: ContactsApp for saved or changed, contacts. We have auth, and we found only contacts, which you created. Please use this App!
+servers:
+  - url:
+paths:
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
+    delete:
+      $ref: ../swagger/paths/contacts/{id}/delete.yaml
+    patch:
+      $ref: ../swagger/paths/contacts/{id}/patch.yaml
+  /contact:
+    post:
+      security:
+        - bearerAuth: []
+      $ref: ../swagger/paths/contacts/post.yaml
+    get:
+      security:
+        - bearerAuth: []
+      $ref: ../swagger/paths/contacts/get.yaml
+  /auth/register:
+    post:
+      $ref: ../swagger/paths/auth/register/post.yaml
+  /auth/login:
+    post:
+      $ref: ../swagger/paths/auth/login/post.yaml
+  /auth/logout:
+    post:
+      security:
+        - bearerAuth: []
+      $ref: ../swagger/paths/auth/logout/post.yaml
+  /auth/refresh:
+    post:
+      security:
+        - bearerAuth: []
+      $ref: ../swagger/paths/auth/refresh/post.yaml
+  /auth/send-reset-email:
+    post:
+      $ref: ../swagger/paths/auth/send-reset-email/post.yaml
+  /auth/reset-password:
+    post:
+      $ref: ../swagger/paths/auth/reset-password/post.yaml
+  /auth/get-oauth-url:
+    get:
+      $ref: ../swagger/paths/auth/Google-Auth/get.yaml
+  /auth/confirm-google-auth:
+    post:
+      $ref: ../swagger/paths/auth/Google-Login/post.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

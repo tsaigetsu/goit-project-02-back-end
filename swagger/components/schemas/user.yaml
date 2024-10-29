@@ -1,0 +1,25 @@
+type: object
+required:
+  - _id
+  - name
+  - email
+  - password
+
+properties:
+  _id:
+    description: 'Contact id'
+    type: string
+    example: 65e4decdd286b30065d54af9
+  name:
+    description: 'Contact name'
+    type: string
+    example: 'Kateryna Povalenko'
+
+  email:
+    description: 'Contact email'
+    type: string
+
+  password:
+    description: 'Contact phoneNumber'
+    type: string
+    example: password1234A!

@@ -1,0 +1,44 @@
+type: object
+required:
+  - _id
+  - name
+  - phoneNumber
+  - email
+  - isFavorite
+  - contactType
+  - userId
+
+properties:
+  _id:
+    description: 'Contact id'
+    type: string
+    example: 65e4decdd286b30065d54af9
+  name:
+    description: 'Contact name'
+    type: string
+    example: 'Kateryna Povalenko'
+  phone:
+    description: 'Contact phoneNumber'
+    type: number
+    example: +380000000005
+  email:
+    description: 'Contact email'
+    type: string
+
+  isFavorite:
+    description: ' Is Favorite or no, contacts'
+    type: boolean
+    example: false
+  contactType:
+    description: 'Types of contact'
+    type: string
+    enum: ['work', 'home', 'personal']
+    default: personal
+  userId:
+    description: 'Contacts user id'
+    type: string
+    example: 65e4decdd286b30065d54af9
+  photo:
+    description: 'Link to contacts photo'
+    type: string
+    example: ''

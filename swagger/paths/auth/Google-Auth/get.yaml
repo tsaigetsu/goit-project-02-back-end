@@ -1,0 +1,30 @@
+tags:
+  - Auth with Google
+summary: Get Google OAuth URL
+description: |
+  Get the URL where users can log in via Google OAuth.
+  Once the user is authenticated with Google, they will be redirected to your application.
+security: []
+responses:
+  '200':
+    description: Successfully fetched Google OAuth URL.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully get Google OAuth url!
+            data:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: 'https://accounts.google.com/o/oauth2/auth?client_id=...'
+  '500':
+    description: Internal server error
+operationId: getGoogleOAuthUrl

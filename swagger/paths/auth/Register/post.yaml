@@ -1,0 +1,63 @@
+tags:
+  - Auth
+summary: Register a new user
+operationId: registerUser
+security: []
+description: 'Register a new user by providing name, email, and password.'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: 'John Doe'
+          email:
+            type: string
+            example: 'john.doe@example.com'
+          password:
+            type: string
+            example: 'Password'
+responses:
+  '201':
+    description: Successfully registered user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Successfully registered user'
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  example: 'your_access_token_here'
+  '409':
+    description: Conflict (Email is already in use)
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 409
+            message:
+              type: string
+              example: 'Email is already in use'

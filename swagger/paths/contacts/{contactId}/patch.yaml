@@ -1,0 +1,29 @@
+tags:
+  - Contacts
+summary: Оновлення контакту
+operationId: updateContact
+description: Цей ендпоінт оновлює інформацію про контакт за його ID.
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: contactId
+    required: true
+    schema:
+      type: string
+    description: Ідентифікатор контакту
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/UpdateContact'
+responses:
+  '200':
+    description: Контакт успішно оновлений
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Contact'
+  '404':
+    description: Контакт не знайдено

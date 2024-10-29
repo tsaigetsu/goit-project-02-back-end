@@ -1,0 +1,90 @@
+tags:
+  - Contacts
+summary: Get all contacts
+operationId: getAllContacts
+description: 'Retrieve a list of contacts with optional pagination, sorting, and filtering.'
+security:
+  - bearerAuth: []
+parameters:
+  - in: query
+    name: page
+    required: false
+    description: 'Page number for pagination.'
+    schema:
+      type: integer
+      example: 1
+  - in: query
+    name: perPage
+    required: false
+    description: 'Number of contacts to retrieve per page.'
+    schema:
+      type: integer
+      example: 10
+  - in: query
+    name: sortBy
+    required: false
+    description: 'Field to sort by.'
+    schema:
+      type: string
+      example: 'name' # or other fields such as 'phoneNumber', etc.
+  - in: query
+    name: sortOrder
+    required: false
+    description: 'Order of sorting: ASC or DESC.'
+    schema:
+      type: string
+      enum: [ASC, DESC]
+      example: 'ASC'
+  - in: query
+    name: contactType
+    required: false
+    description: 'Filter contacts by their type (e.g., work, home, personal).'
+    schema:
+      type: string
+      enum: ['work', 'home', 'personal']
+      example: 'personal'
+  - in: query
+    name: isFavourite
+    required: false
+    description: 'Filter contacts by whether they are marked as favourite.'
+    schema:
+      type: boolean
+      example: true # or false
+responses:
+  '200':
+    description: Successfully retrieved contacts
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully found contacts!'
+            data:
+              type: object
+              properties:
+                contacts:
+                  type: array
+                  items:
+                    $ref: '../../components/schemas/contact.yaml' # Ось тут вкажіть вашу схему контакту
+                totalCount:
+                  type: integer
+                  example: 100 # Загальна кількість контактів
+                currentPage:
+                  type: integer
+                  example: 1
+                totalPages:
+                  type: integer
+                  example: 10
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

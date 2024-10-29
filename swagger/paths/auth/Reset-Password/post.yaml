@@ -1,0 +1,69 @@
+tags:
+  - Auth
+summary: Reset user password
+operationId: resetPassword
+security: []
+description: 'Reset the user password using a valid token.'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - password
+          - token
+        properties:
+          password:
+            type: string
+            example: 'NewSecurePassword123!'
+          token:
+            type: string
+            example: 'your_reset_token_here'
+responses:
+  '200':
+    description: Successfully reset the password
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Password was successfully reset!'
+            data:
+              type: object
+              properties: {}
+  '401':
+    description: Invalid or expired token
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: 'Token is expired or invalid.'
+  '404':
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: 'User not found'
