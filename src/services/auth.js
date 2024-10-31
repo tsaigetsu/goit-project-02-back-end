@@ -11,10 +11,10 @@ import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import {
-  getFullNameFromGoogleTokenPayload,
-  validateCode,
-} from '../utils/googleOAuth2.js';
+// import {
+//   getFullNameFromGoogleTokenPayload,
+//   validateCode,
+// } from '../utils/googleOAuth2.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -31,11 +31,11 @@ export const registerUser = async (payload) => {
 export const loginUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
   if (!user) {
-    throw createHttpError(404, 'User not found');
+    throw createHttpError(401, 'Email or password invalid');
   }
   const isEqual = await bcrypt.compare(payload.password, user.password);
   if (!isEqual) {
-    throw createHttpError(401, 'Unauthorized');
+    throw createHttpError(401, 'Email or password invalid');
   }
   await SessionsCollection.deleteOne({ userId: user._id });
 
@@ -81,7 +81,7 @@ export const refreshUserSession = async ({ sessionId, refreshToken }) => {
   }
 
   if (!session) {
-    throw createHttpError(401, 'Session token expired or invalid');
+    throw createHttpError(401, 'Session not found');
   }
 
   await SessionsCollection.deleteOne({ _id: sessionId, refreshToken });
@@ -137,8 +137,8 @@ export const requestResetToken = async (email) => {
       throw createHttpError(
         500,
         'Failed to send the email, please try again later.',
+        err,
       );
-    throw err;
   }
 };
 
@@ -148,7 +148,8 @@ export const resetPassword = async (payload) => {
   try {
     entries = jwt.verify(payload.token, env('JWT_SECRET'));
   } catch (err) {
-    if (err instanceof Error) throw createHttpError(401, err.message);
+    if (err instanceof Error)
+      throw createHttpError(401, 'Token is expired or invalid.');
     throw err;
   }
 
@@ -169,25 +170,25 @@ export const resetPassword = async (payload) => {
   );
 };
 
-export const loginOrSignupWithGoogle = async (code) => {
-  const loginTicket = await validateCode(code);
-  const payload = loginTicket.getPayload();
-  if (!payload) throw createHttpError(401);
+// export const loginOrSignupWithGoogle = async (code) => {
+//   const loginTicket = await validateCode(code);
+//   const payload = loginTicket.getPayload();
+//   if (!payload) throw createHttpError(401);
 
-  let user = await UsersCollection.findOne({ email: payload.email });
-  if (!user) {
-    const password = await bcrypt.hash(randomBytes(10), 10);
-    user = await UsersCollection.create({
-      email: payload.email,
-      name: getFullNameFromGoogleTokenPayload(payload),
-      password,
-    });
-  }
+//   let user = await UsersCollection.findOne({ email: payload.email });
+//   if (!user) {
+//     const password = await bcrypt.hash(randomBytes(10), 10);
+//     user = await UsersCollection.create({
+//       email: payload.email,
+//       name: getFullNameFromGoogleTokenPayload(payload),
+//       password,
+//     });
+//   }
 
-  const newSession = createSession();
+//   const newSession = createSession();
 
-  return await SessionsCollection.create({
-    userId: user._id,
-    ...newSession,
-  });
-};
+//   return await SessionsCollection.create({
+//     userId: user._id,
+//     ...newSession,
+//   });
+// };
