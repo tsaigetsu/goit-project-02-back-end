@@ -22,7 +22,7 @@ export const validateBody = (schema) => async (req, res, next) => {
 
     if (userId) {
       await schema.validateAsync(
-        { userId, ...req.body },
+        { ...req.body, userId },
         {
           convert: false,
           abortEarly: false,
