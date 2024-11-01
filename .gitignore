@@ -1,10 +1,8 @@
 /node_modules
 
 .env
-.env.example
 
 .vscode
 .DS_Store
 .idea
-.env.example
-google-oauth.json
+.pullresquests-list.txt

@@ -1,19 +1,19 @@
 {
-  "name": "nodejs-hw-mongodb",
+  "name": "team-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "team-project",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "start": "node ./src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "lint": "eslint src/**/*.js",
     "build": "npm run build-docs",
     "build-docs": "redocly bundle --ext json -o docs/swagger.json",
     "preview-docs": "redocly preview-docs"
   },
   "keywords": [],
-  "author": "Inna Matsidonska <inkom0703@gmail.com>",
+  "author": "Team",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.2.0",
@@ -35,7 +35,7 @@
     "http-errors": "^2.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.2",
+    "mongoose": "^8.7.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.15",
     "pino-http": "^10.3.0",
