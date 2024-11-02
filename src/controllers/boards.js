@@ -2,15 +2,15 @@ import createHttpError from 'http-errors';
 import {
   createBoard,
   deleteBoard,
-  getAllboards,
+  getAllBoards,
   getBoardById,
-  updateboard,
+  updateBoard,
 } from '../services/boards.js';
 
 export const getAllBoardsCtrl = async (req, res) => {
   const userId = req.user?._id;
 
-  const boards = await getAllboards({
+  const boards = await getAllBoards({
     userId,
   });
 
@@ -54,7 +54,7 @@ export const patchBoardCtrl = async (req, res, next) => {
   const { boardId } = req.params;
   const userId = req.user?._id;
 
-  const result = await updateboard(boardId, {
+  const result = await updateBoard(boardId, {
     ...req.body,
     userId,
   });
@@ -75,7 +75,7 @@ export const deleteBoardCtrl = async (req, res, next) => {
   const { boardId } = req.params;
   const userId = req.user?._id;
 
-  const board = await deleteBoard(boardId, userId);
+  const board = await deleteBoard({ boardId, userId });
 
   if (!board) {
     next(createHttpError(404, 'Board not found'));

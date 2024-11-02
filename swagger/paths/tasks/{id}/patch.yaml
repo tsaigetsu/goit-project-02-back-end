@@ -1,0 +1,44 @@
+tags:
+  - Tasks
+summary: Update task
+operationId: updateTask
+description: 'Update a task with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: '../../../components/schemas/task/patchReqBody.yaml'
+responses:
+  '201':
+    description: 'Task successfully updated'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully updated a task!
+            data:
+              $ref: ../../../components/schemas/task/responseBody.yaml
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

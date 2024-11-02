@@ -1,0 +1,44 @@
+tags:
+  - Columns
+summary: Update column
+operationId: updateColumn
+description: 'Update a column with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: '../../../components/schemas/column/patchReqBody.yaml'
+responses:
+  '201':
+    description: 'Column successfully updated'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully updated a column!
+            data:
+              $ref: ../../../components/schemas/column/responseBody.yaml
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

@@ -1,0 +1,15 @@
+type: object
+required:
+  - title
+  - boardId
+properties:
+  title:
+    description: "Column's title"
+    type: string
+    example: 'To DO'
+  boardId:
+    description: "Column's board id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+
+

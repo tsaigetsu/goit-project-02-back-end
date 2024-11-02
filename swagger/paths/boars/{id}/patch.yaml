@@ -1,9 +1,8 @@
-# swagger/paths/studens/{id}/get.yaml
 tags:
-  - Contacts
-summary: Get contact by id
-operationId: getContact
-description: 'Get contact by id'
+  - Boards
+summary: Update board
+operationId: updateBoard
+description: 'Update a board with payload'
 security:
   - bearerAuth: []
 parameters:
@@ -13,9 +12,15 @@ parameters:
     schema:
       type: string
       example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: '../../../components/schemas/board/patchReqBody.yaml'
 responses:
-  '200':
-    description: 'Get contact by id'
+  '201':
+    description: 'Board successfully updated'
     content:
       application/json:
         schema:
@@ -27,13 +32,12 @@ responses:
           properties:
             status:
               type: integer
-              example: 200
+              example: 201
             message:
               type: string
-              example: Successfully found contact with id 65ca67e7ae7f10c88b598384!
+              example: Successfully updated a board!
             data:
-              type: object
-              $ref: ../../../components/schemas/contact.yaml
+              $ref: ../../../components/schemas/board/responseBody.yaml
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

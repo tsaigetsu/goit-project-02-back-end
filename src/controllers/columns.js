@@ -43,7 +43,7 @@ export const deleteColumnCtrl = async (req, res, next) => {
   const { columnId } = req.params;
   const userId = req.user?._id;
 
-  const column = await deleteColumn(columnId, userId);
+  const column = await deleteColumn({ columnId, userId });
 
   if (!column) {
     next(createHttpError(404, 'Column not found'));

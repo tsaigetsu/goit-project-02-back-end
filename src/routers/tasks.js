@@ -1,5 +1,5 @@
 import { Router } from 'express';
-// import authenticate from '../middlewares/authenticate.js';
+import authenticate from '../middlewares/authenticate.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { createTaskSchema, updateTaskSchema } from '../validation/tasks.js';
 import { validateBody } from '../middlewares/validateBody.js';
@@ -12,7 +12,7 @@ import {
 
 const router = Router();
 
-// router.use(authenticate);
+router.use(authenticate);
 
 router.use('/:taskId', isValidId('taskId'));
 

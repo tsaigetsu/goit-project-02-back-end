@@ -1,0 +1,35 @@
+tags:
+  - Tasks
+summary: Create task
+operationId: createTask
+description: 'Create a task with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: '../../components/schemas/task/postReqBody.yaml'
+responses:
+  '201':
+    description: 'Task successfully created'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a task!
+            data:
+              $ref: ../../components/schemas/task/responseBody.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'

@@ -1,0 +1,35 @@
+tags:
+  - Columns
+summary: Create column
+operationId: createColumn
+description: 'Create a column with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: '../../components/schemas/column/postReqBody.yaml'
+responses:
+  '201':
+    description: 'Column successfully created'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a column!
+            data:
+              $ref: ../../components/schemas/column/responseBody.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'
