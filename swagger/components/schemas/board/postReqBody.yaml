@@ -1,0 +1,18 @@
+type: object
+required:
+  - title
+  - backgroundId
+  - iconId
+properties:
+  title:
+    description: "Board's title"
+    type: string
+    example: 'Name of board'
+  iconId:
+    description: "Board's icon id"
+    type: string
+    enum: ['1', '2']
+  backgroundId:
+    description: "Board's background id"
+    type: string
+    enum: ['1', '2']

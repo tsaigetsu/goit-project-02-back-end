@@ -7,24 +7,36 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: ContactsApp for saved or changed, contacts. We have auth, and we found only contacts, which you created. Please use this App!
 servers:
-  - url:
+  - url: http://localhost:3000
 paths:
-  /contacts/{id}:
+  /boars:
     get:
-      $ref: ../swagger/paths/contacts/{id}/get.yaml
-    delete:
-      $ref: ../swagger/paths/contacts/{id}/delete.yaml
-    patch:
-      $ref: ../swagger/paths/contacts/{id}/patch.yaml
-  /contact:
+      $ref: ../swagger/paths/boars/get.yaml
     post:
-      security:
-        - bearerAuth: []
-      $ref: ../swagger/paths/contacts/post.yaml
+      $ref: ../swagger/paths/boars/post.yaml
+  /boars/{id}:
     get:
-      security:
-        - bearerAuth: []
-      $ref: ../swagger/paths/contacts/get.yaml
+      $ref: ../swagger/paths/boars/{id}/get.yaml
+    patch:
+      $ref: ../swagger/paths/boars/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/boars/{id}/delete.yaml
+  /columns:
+    post:
+      $ref: ../swagger/paths/columns/post.yaml
+  /columns/{id}:
+    patch:
+      $ref: ../swagger/paths/columns/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/columns/{id}/delete.yaml
+  /tasks:
+    post:
+      $ref: ../swagger/paths/tasks/post.yaml
+  /tasks/{id}:
+    patch:
+      $ref: ../swagger/paths/tasks/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/tasks/{id}/delete.yaml
   /auth/register:
     post:
       $ref: ../swagger/paths/auth/register/post.yaml
@@ -36,11 +48,6 @@ paths:
       security:
         - bearerAuth: []
       $ref: ../swagger/paths/auth/logout/post.yaml
-  /auth/refresh:
-    post:
-      security:
-        - bearerAuth: []
-      $ref: ../swagger/paths/auth/refresh/post.yaml
   /auth/send-reset-email:
     post:
       $ref: ../swagger/paths/auth/send-reset-email/post.yaml

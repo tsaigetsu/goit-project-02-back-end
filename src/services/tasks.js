@@ -8,7 +8,7 @@ export const createTask = async (payload) => {
 export const updateTask = async (taskId, payload, options = {}) => {
   const rawResult = await TasksCollection.findOneAndUpdate(
     { _id: taskId, userId: payload.userId },
-    { ...payload },
+    payload,
     {
       new: true,
       includeResultMetadata: true,

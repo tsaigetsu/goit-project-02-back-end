@@ -11,11 +11,11 @@ import {
   patchColumnCtrl,
 } from '../controllers/columns.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-// import authenticate from '../middlewares/authenticate.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const router = Router();
 
-// router.use(authenticate);
+router.use(authenticate);
 
 router.use('/:columnId', isValidId('columnId'));
 

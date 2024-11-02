@@ -1,8 +1,8 @@
 tags:
-  - Contacts
-summary: Delete contact by id
-operationId: deleteContact
-description: 'Delete contact by id'
+  - Boards
+summary: Delete board
+operationId: deleteBoard
+description: 'Delete a board with payload'
 security:
   - bearerAuth: []
 parameters:
@@ -13,8 +13,8 @@ parameters:
       type: string
       example: '65ca67e7ae7f10c88b598384'
 responses:
-  '201':
-    description: 'Contact successfully deleted'
+  '204':
+    description: The board was deleted successfully.
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

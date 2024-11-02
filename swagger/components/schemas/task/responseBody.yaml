@@ -1,0 +1,48 @@
+type: object
+required:
+  - _id
+  - title
+  - description
+  - deadline
+  - priority
+  - userId
+  - columnId
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    description: "Task's id"
+    type: string
+    example: 65e4decdd286b30065d54af9
+  title:
+    description: "Task's title"
+    type: string
+    example: 'Do something today'
+  description:
+    description: "Task's description"
+    type: string
+    example: 'More about what to do'
+  deadline:
+    description: "Task's deadline in your format"
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  priority:
+    description: "Task's priority"
+    type: string
+    enum: ['without priority', 'low', 'medium', 'high']
+  userId:
+    description: "Task's owner id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+  columnId:
+    description: "Task's column id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+  createdAt:
+    description: 'Task creation time'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  updatedAt:
+    description: 'Time the task was last updated'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
