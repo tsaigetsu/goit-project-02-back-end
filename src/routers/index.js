@@ -8,9 +8,10 @@ import boardsRouter from './boards.js';
 const router = Router();
 
 router.use('/auth', authRouter);
+router.use('/user', userRouter);
 router.use('/tasks', tasksRouter);
 router.use('/boards', boardsRouter);
 router.use('/columns', columnsRouter);
-router.use('/users', userRouter);
+router.use('/user', userRouter);
 
 export default router;
