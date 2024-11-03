@@ -7,6 +7,10 @@ export const getProfile = async (req, res) => {
     '-password',
   );
 
+  if (!user.photo) {
+    user.photo = '../../uploads/default-user.jpg';
+  }
+
   if (!user) {
     return res.status(404).json({
       status: 404,
@@ -26,7 +30,17 @@ export const updateProfile = async (req, res) => {
   const updatedData = {};
 
   if (name) updatedData.name = name;
-  if (email) updatedData.email = email;
+
+  if (email) {
+    const emailExists = await UsersCollection.findOne({ email });
+    if (emailExists && emailExists._id.toString() !== req.user._id.toString()) {
+      return res.status(409).json({
+        status: 409,
+        message: 'Email is already in use',
+      });
+    }
+    updatedData.email = email;
+  }
 
   if (password) {
     const hashedPassword = await bcrypt.hash(password, 10);
