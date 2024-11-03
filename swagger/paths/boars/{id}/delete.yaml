@@ -1,0 +1,21 @@
+tags:
+  - Boards
+summary: Delete board
+operationId: deleteBoard
+description: 'Delete a board with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+responses:
+  '204':
+    description: The board was deleted successfully.
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

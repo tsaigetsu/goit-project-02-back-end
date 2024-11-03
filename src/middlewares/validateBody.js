@@ -1,19 +1,3 @@
-// import createHttpError from 'http-errors';
-
-// export const validateBody = (schema) => async (req, res, next) => {
-//   try {
-//     await schema.validateAsync(req.body, {
-//       abortEarly: false,
-//     });
-//     next();
-//   } catch (err) {
-//     const error = createHttpError(400, 'Bad request', {
-//       errors: err.details,
-//     });
-//     next(error);
-//   }
-// };
-
 import createHttpError from 'http-errors';
 
 export const validateBody = (schema) => async (req, res, next) => {
@@ -22,7 +6,7 @@ export const validateBody = (schema) => async (req, res, next) => {
 
     if (userId) {
       await schema.validateAsync(
-        { userId, ...req.body },
+        { ...req.body, userId },
         {
           convert: false,
           abortEarly: false,

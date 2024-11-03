@@ -1,0 +1,23 @@
+type: object
+properties:
+  title:
+    description: "Task's title"
+    type: string
+    example: 'Do something today'
+  description:
+    description: "Task's description"
+    type: string
+    example: 'More about what to do'
+  deadline:
+    description: "Task's deadline in your format"
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  priority:
+    description: "Task's priority"
+    type: string
+    enum: ['without priority', 'low', 'medium', 'high']
+  columnId:
+    description: "Task's column id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+

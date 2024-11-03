@@ -1,0 +1,39 @@
+type: object
+required:
+  - _id
+  - title
+  - userId
+  - boardId
+  - createdAt
+  - updatedAt
+  - tasks
+properties:
+  _id:
+    description: "Column's id"
+    type: string
+    example: 65e4decdd286b30065d54af9
+  title:
+    description: "Column's title"
+    type: string
+    example: 'To DO'
+  userId:
+    description: "Column's owner id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+  boardId:
+    description: "Column's board id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+  createdAt:
+    description: 'Column creation time'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  updatedAt:
+    description: 'Time the column was last updated'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  tasks:
+    description: Array of column's tasks
+    type: array
+    items:
+      $ref: ../task/responseBody.yaml

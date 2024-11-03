@@ -1,0 +1,44 @@
+type: object
+required:
+  - _id
+  - title
+  - backgroundId
+  - iconId
+  - userId
+  - createdAt
+  - updatedAt
+  - columns
+properties:
+  _id:
+    description: "Board's id"
+    type: string
+    example: 65e4decdd286b30065d54af9
+  title:
+    description: "Board's title"
+    type: string
+    example: 'Name of board'
+  iconId:
+    description: "Board's icon id"
+    type: string
+    enum: ['1', '2']
+  backgroundId:
+    description: "Board's background id"
+    type: string
+    enum: ['1', '2']
+  userId:
+    description: "Board's owner id"
+    type: string
+    example: 67253fb87c2bb8a903b38e0b
+  createdAt:
+    description: 'Board creation time'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  updatedAt:
+    description: 'Time the board was last updated'
+    type: string
+    example: '2024-10-21T19:24:54.504Z'
+  columns:
+    type: array
+    description: Array of board's columns
+    items:
+      $ref: '../column/responseBody.yaml'
