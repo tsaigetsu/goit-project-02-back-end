@@ -12,10 +12,13 @@
   "servers": [
     {
       "url": "http://localhost:3000"
+    },
+    {
+      "url": "https://goit-project-02-back-end.onrender.com"
     }
   ],
   "paths": {
-    "/boars": {
+    "/boards": {
       "get": {
         "tags": [
           "Boards"
@@ -174,7 +177,7 @@
         }
       }
     },
-    "/boars/{id}": {
+    "/boards/{id}": {
       "get": {
         "tags": [
           "Boards"
