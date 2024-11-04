@@ -1,13 +1,19 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: ContactsApp
+  title: Task Pro
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  description: ContactsApp for saved or changed, contacts. We have auth, and we found only contacts, which you created. Please use this App!
+  description: Task Pro is a web application for team task management.
+    The app enables users to organize work, divide tasks into stages, collaborate, and track progress.
+    With user registration, authentication, and different access levels, Task Pro ensures data security and provides access only to relevant information.
 servers:
   - url: http://localhost:3000
+  - url: https://goit-project-02-front-end.onrender.com
+    description: Frontend application
+  - url: https://goit-project-02-back-end.onrender.com
+    description: Backend API
 paths:
   /boars:
     get:
@@ -48,6 +54,9 @@ paths:
       security:
         - bearerAuth: []
       $ref: ../swagger/paths/auth/logout/post.yaml
+  /auth/refresh:
+    post:
+      $ref: ../swagger/paths/auth/refresh/post.yaml
   /auth/send-reset-email:
     post:
       $ref: ../swagger/paths/auth/send-reset-email/post.yaml

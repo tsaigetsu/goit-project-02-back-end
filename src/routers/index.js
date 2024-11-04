@@ -12,6 +12,5 @@ router.use('/user', userRouter);
 router.use('/tasks', tasksRouter);
 router.use('/boards', boardsRouter);
 router.use('/columns', columnsRouter);
-router.use('/user', userRouter);
 
 export default router;
