@@ -16,18 +16,18 @@ servers:
   - url: https://goit-project-02-back-end.onrender.com
     description: Backend API
 paths:
-  /boars:
+  /boards:
     get:
-      $ref: ../swagger/paths/boars/get.yaml
+      $ref: ../swagger/paths/boards/get.yaml
     post:
-      $ref: ../swagger/paths/boars/post.yaml
-  /boars/{id}:
+      $ref: ../swagger/paths/boards/post.yaml
+  /boards/{id}:
     get:
-      $ref: ../swagger/paths/boars/{id}/get.yaml
+      $ref: ../swagger/paths/boards/{id}/get.yaml
     patch:
-      $ref: ../swagger/paths/boars/{id}/patch.yaml
+      $ref: ../swagger/paths/boards/{id}/patch.yaml
     delete:
-      $ref: ../swagger/paths/boars/{id}/delete.yaml
+      $ref: ../swagger/paths/boards/{id}/delete.yaml
   /columns:
     post:
       $ref: ../swagger/paths/columns/post.yaml
