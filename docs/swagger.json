@@ -2,27 +2,31 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "ContactsApp",
+    "title": "Task Pro",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "description": "ContactsApp for saved or changed, contacts. We have auth, and we found only contacts, which you created. Please use this App!"
+    "description": "Task Pro is a web application for team task management. The app enables users to organize work, divide tasks into stages, collaborate, and track progress. With user registration, authentication, and different access levels, Task Pro ensures data security and provides access only to relevant information."
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:3000",
+      "description": "Local server"
     },
     {
-      "url": "https://goit-project-02-back-end.onrender.com"
+      "url": "https://goit-project-02-front-end.onrender.com",
+      "description": "Frontend application"
+    },
+    {
+      "url": "https://goit-project-02-back-end.onrender.com",
+      "description": "Backend API"
     }
   ],
   "paths": {
     "/boards": {
       "get": {
-        "tags": [
-          "Boards"
-        ],
+        "tags": ["Boards"],
         "summary": "Get list of boards",
         "operationId": "getBoards",
         "description": "Get list of boards with this endpoint",
@@ -38,11 +42,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -141,9 +141,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Boards"
-        ],
+        "tags": ["Boards"],
         "summary": "Create board",
         "operationId": "createBoard",
         "description": "Create a board with payload",
@@ -169,11 +167,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -199,9 +193,7 @@
     },
     "/boards/{id}": {
       "get": {
-        "tags": [
-          "Boards"
-        ],
+        "tags": ["Boards"],
         "summary": "Get list of boards",
         "operationId": "getBoard",
         "description": "Get list of boards with this endpoint",
@@ -228,11 +220,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -259,9 +247,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Boards"
-        ],
+        "tags": ["Boards"],
         "summary": "Update board",
         "operationId": "updateBoard",
         "description": "Update a board with payload",
@@ -298,11 +284,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -329,9 +311,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Boards"
-        ],
+        "tags": ["Boards"],
         "summary": "Delete board",
         "operationId": "deleteBoard",
         "description": "Delete a board with payload",
@@ -366,9 +346,7 @@
     },
     "/columns": {
       "post": {
-        "tags": [
-          "Columns"
-        ],
+        "tags": ["Columns"],
         "summary": "Create column",
         "operationId": "createColumn",
         "description": "Create a column with payload",
@@ -394,11 +372,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -424,9 +398,7 @@
     },
     "/columns/{id}": {
       "patch": {
-        "tags": [
-          "Columns"
-        ],
+        "tags": ["Columns"],
         "summary": "Update column",
         "operationId": "updateColumn",
         "description": "Update a column with payload",
@@ -463,11 +435,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -494,9 +462,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Columns"
-        ],
+        "tags": ["Columns"],
         "summary": "Delete column",
         "operationId": "deleteColumn",
         "description": "Delete a column with payload",
@@ -531,9 +497,7 @@
     },
     "/tasks": {
       "post": {
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "summary": "Create task",
         "operationId": "createTask",
         "description": "Create a task with payload",
@@ -559,11 +523,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -589,9 +549,7 @@
     },
     "/tasks/{id}": {
       "patch": {
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "summary": "Update task",
         "operationId": "updateTask",
         "description": "Update a task with payload",
@@ -628,11 +586,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -659,9 +613,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Tasks"
-        ],
+        "tags": ["Tasks"],
         "summary": "Delete task",
         "operationId": "deleteTask",
         "description": "Delete a task with payload",
@@ -696,9 +648,7 @@
     },
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Register a new user",
         "operationId": "registerUser",
         "security": [],
@@ -709,11 +659,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "email",
-                  "password"
-                ],
+                "required": ["name", "email", "password"],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -739,11 +685,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -792,9 +734,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Login user",
         "operationId": "loginUser",
         "security": [],
@@ -805,10 +745,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "password"
-                ],
+                "required": ["email", "password"],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -830,11 +767,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -888,9 +821,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Logout user",
         "operationId": "logoutUser",
         "description": "Logout the current user and clear session cookies.",
@@ -921,198 +852,9 @@
         }
       }
     },
-    "/auth/send-reset-email": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Request password reset token",
-        "operationId": "requestResetToken",
-        "security": [],
-        "description": "Send an email to the user with instructions to reset their password.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "email"
-                ],
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "example": "john.doe@example.com"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully sent reset password email",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Reset password email was successfully sent!"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 404
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/reset-password": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Reset user password",
-        "operationId": "resetPassword",
-        "security": [],
-        "description": "Reset the user password using a valid token.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "password",
-                  "token"
-                ],
-                "properties": {
-                  "password": {
-                    "type": "string",
-                    "example": "NewSecurePassword123!"
-                  },
-                  "token": {
-                    "type": "string",
-                    "example": "your_reset_token_here"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully reset the password",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Password was successfully reset!"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid or expired token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 401
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Token is expired or invalid."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 404
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/auth/get-oauth-url": {
       "get": {
-        "tags": [
-          "Auth with Google"
-        ],
+        "tags": ["Auth with Google"],
         "summary": "Get Google OAuth URL",
         "description": "Get the URL where users can log in via Google OAuth.\nOnce the user is authenticated with Google, they will be redirected to your application.\n",
         "security": [],
@@ -1155,9 +897,7 @@
     },
     "/auth/confirm-google-auth": {
       "post": {
-        "tags": [
-          "Auth with Google"
-        ],
+        "tags": ["Auth with Google"],
         "summary": "Confirm Google OAuth",
         "description": "Confirm Google OAuth by sending the authorization code obtained after user authentication.\nReturns an access token if the authentication is successful.\n",
         "security": [],
@@ -1222,6 +962,219 @@
         },
         "operationId": "confirmGoogleAuth"
       }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get user profile",
+        "description": "Retrieve the profile information of the authenticated user.",
+        "operationId": "getUserProfile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved user profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Profile retrieved successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "5f50c31f2c8c8a5d3f4b4b5c"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "johndoe@example.com"
+                        },
+                        "photo": {
+                          "type": "string",
+                          "example": "https://cloudinary.com/johndoe_profile.jpg"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2023-01-01T00:00:00.000Z"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2023-01-02T00:00:00.000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - User is not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 401
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized - No valid token provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "User not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user profile",
+        "operationId": "updateProfile",
+        "description": "This endpoint allows an authenticated user to update their profile information.",
+        "tags": ["User"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "New name for the user"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "New email for the user",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "New password for the user",
+                    "format": "password"
+                  },
+                  "photo": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Profile photo to upload"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Profile updated successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "5f8d0d55b54764421b7169a2"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "john.doe@example.com"
+                        },
+                        "photo": {
+                          "type": "string",
+                          "example": "https://res.cloudinary.com/.../user-photo.jpg"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2024-11-02T18:42:50.038Z"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2024-11-02T19:09:22.944Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict - Email already in use"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1238,11 +1191,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1254,9 +1203,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1275,11 +1222,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1291,9 +1234,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1310,10 +1251,7 @@
     "schemas": {
       "postReqBody": {
         "type": "object",
-        "required": [
-          "title",
-          "iconId"
-        ],
+        "required": ["title", "iconId"],
         "properties": {
           "title": {
             "description": "Board's title",
@@ -1323,16 +1261,7 @@
           "iconId": {
             "description": "Board's icon id",
             "type": "string",
-            "enum": [
-              "ic1",
-              "ic2",
-              "ic3",
-              "ic4",
-              "ic5",
-              "ic6",
-              "ic7",
-              "ic8"
-            ]
+            "enum": ["ic1", "ic2", "ic3", "ic4", "ic5", "ic6", "ic7", "ic8"]
           },
           "backgroundId": {
             "description": "Board's background id",
@@ -1395,12 +1324,7 @@
           "priority": {
             "description": "Task's priority",
             "type": "string",
-            "enum": [
-              "without priority",
-              "low",
-              "medium",
-              "high"
-            ]
+            "enum": ["without priority", "low", "medium", "high"]
           },
           "userId": {
             "description": "Task's owner id",
@@ -1501,16 +1425,7 @@
           "iconId": {
             "description": "Board's icon id",
             "type": "string",
-            "enum": [
-              "ic1",
-              "ic2",
-              "ic3",
-              "ic4",
-              "ic5",
-              "ic6",
-              "ic7",
-              "ic8"
-            ]
+            "enum": ["ic1", "ic2", "ic3", "ic4", "ic5", "ic6", "ic7", "ic8"]
           },
           "backgroundId": {
             "description": "Board's background id",
@@ -1569,16 +1484,7 @@
           "iconId": {
             "description": "Board's icon id",
             "type": "string",
-            "enum": [
-              "ic1",
-              "ic2",
-              "ic3",
-              "ic4",
-              "ic5",
-              "ic6",
-              "ic7",
-              "ic8"
-            ]
+            "enum": ["ic1", "ic2", "ic3", "ic4", "ic5", "ic6", "ic7", "ic8"]
           },
           "backgroundId": {
             "description": "Board's background id",
@@ -1606,10 +1512,7 @@
       },
       "postReqBody-2": {
         "type": "object",
-        "required": [
-          "title",
-          "boardId"
-        ],
+        "required": ["title", "boardId"],
         "properties": {
           "title": {
             "description": "Column's title",
@@ -1666,12 +1569,7 @@
           "priority": {
             "description": "Task's priority",
             "type": "string",
-            "enum": [
-              "without priority",
-              "low",
-              "medium",
-              "high"
-            ]
+            "enum": ["without priority", "low", "medium", "high"]
           },
           "columnId": {
             "description": "Task's column id",
@@ -1701,12 +1599,7 @@
           "priority": {
             "description": "Task's priority",
             "type": "string",
-            "enum": [
-              "without priority",
-              "low",
-              "medium",
-              "high"
-            ]
+            "enum": ["without priority", "low", "medium", "high"]
           },
           "columnId": {
             "description": "Task's column id",

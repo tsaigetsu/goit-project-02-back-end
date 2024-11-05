@@ -1,11 +1,10 @@
 import { model, Schema } from 'mongoose';
-import { emailRegexp, passwordRegexp } from '../../constants/users.js';
+import { emailRegexp } from '../../constants/users.js';
 
 const usersSchema = new Schema(
   {
     photo: {
       type: String,
-      default: '../../uploads/default-user.jpg',
     },
     name: {
       type: String,
@@ -19,8 +18,12 @@ const usersSchema = new Schema(
     },
     password: {
       type: String,
-      match: passwordRegexp,
       required: true,
+    },
+    theme: {
+      type: String,
+      enum: ['light', 'violet', 'dark'],
+      default: 'light',
     },
   },
   { timestamps: true, versionKey: false },
