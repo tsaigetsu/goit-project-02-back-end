@@ -1,0 +1,70 @@
+tags:
+  - User
+summary: Get user profile
+description: Retrieve the profile information of the authenticated user.
+operationId: getUserProfile
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Successfully retrieved user profile
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Profile retrieved successfully
+            data:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 5f50c31f2c8c8a5d3f4b4b5c
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@example.com
+                photo:
+                  type: string
+                  example: https://cloudinary.com/johndoe_profile.jpg
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: 2023-01-01T00:00:00.000Z
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: 2023-01-02T00:00:00.000Z
+  '401':
+    description: Unauthorized - User is not authenticated
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: Unauthorized - No valid token provided
+  '404':
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: User not found

@@ -8,27 +8,10 @@ export const ENV_VARS = {
   MONGODB_DB: 'MONGODB_DB',
 };
 
-export const SORT_ORDER = {
-  ASC: 'asc',
-  DESC: 'desc',
-};
-
 export const TWO_HOURS = 2 * 60 * 60 * 1000;
 export const ONE_DAY = 24 * 60 * 60 * 1000;
 
-export const SMTP = {
-  SMTP_HOST: 'SMTP_HOST',
-  SMTP_PORT: 'SMTP_PORT',
-  SMTP_USER: 'SMTP_USER',
-  SMTP_PASSWORD: 'SMTP_PASSWORD',
-  SMTP_FROM: 'SMTP_FROM',
-};
-
-export const JWT_SECRET = 'JWT_SECRET';
-
-export const TEMPLATES_DIR = path.join(process.cwd(), 'src', 'templates');
-
-export const APP_DOMAIN = 'APP_DOMAIN';
+// export const JWT_SECRET = 'JWT_SECRET';
 
 export const TEMP_UPLOAD_DIR = path.join(process.cwd(), 'src', 'temp');
 
