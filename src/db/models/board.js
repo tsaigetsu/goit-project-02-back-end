@@ -29,8 +29,8 @@ const boardsSchema = new Schema(
         'bg14',
         'bg15',
       ],
-      default: 'nobg',
-      required: true,
+      // default: 'nobg',
+      // required: true,
     },
     iconId: {
       type: String,
