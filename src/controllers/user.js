@@ -1,12 +1,9 @@
-import bcrypt from 'bcrypt';
-import { UsersCollection } from '../db/models/user.js';
-import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { getUserProfile, updateUserProfile } from '../services/users.js';
 
 export const getProfile = async (req, res) => {
   try {
-    const user = await UsersCollection.findOne({ _id: req.user._id }).select(
-      '-password',
-    );
+    const user = await getUserProfile(req.user._id);
+
     if (!user) {
       return res.status(404).json({
         status: 404,
@@ -17,10 +14,7 @@ export const getProfile = async (req, res) => {
     res.json({
       status: 200,
       message: 'Profile retrieved successfully',
-      data: {
-        ...user,
-        theme: user.theme || 'light',
-      },
+      data: user,
     });
   } catch (error) {
     res.status(500).json({
@@ -32,43 +26,14 @@ export const getProfile = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
     const updatedData = {
-      ...(name && { name }),
-      ...(email && { email }),
-      ...(password && { password: await bcrypt.hash(password, 10) }),
+      ...(req.body.name && { name: req.body.name }),
+      ...(req.body.email && { email: req.body.email }),
+      ...(req.body.password && { password: req.body.password }),
+      ...(req.body.theme && { theme: req.body.theme }),
     };
 
-    if (req.file) {
-      try {
-        const photoUrl = await saveFileToCloudinary(req.file);
-        updatedData.photo = photoUrl;
-      } catch (error) {
-        return res.status(500).json({
-          status: 500,
-          message: 'Failed to upload profile photo',
-        });
-      }
-    }
-
-    if (email) {
-      const emailExists = await UsersCollection.findOne({ email });
-      if (
-        emailExists &&
-        emailExists._id.toString() !== req.user._id.toString()
-      ) {
-        return res.status(409).json({
-          status: 409,
-          message: 'Email is already in use',
-        });
-      }
-    }
-
-    const user = await UsersCollection.findByIdAndUpdate(
-      req.user._id,
-      updatedData,
-      { new: true },
-    );
+    const user = await updateUserProfile(req.user._id, updatedData, req.file);
 
     if (!user) {
       return res.status(404).json({
@@ -83,6 +48,13 @@ export const updateProfile = async (req, res) => {
       data: user,
     });
   } catch (error) {
+    if (error.message === 'Email is already in use') {
+      return res.status(409).json({
+        status: 409,
+        message: error.message,
+      });
+    }
+
     res.status(500).json({
       status: 500,
       message: 'Internal Server Error',

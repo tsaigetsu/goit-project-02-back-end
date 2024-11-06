@@ -12,7 +12,7 @@ export const registerUserSchema = Joi.object({
     'string.pattern.base': `"email" must be a valid email address`,
     'any.required': `"email" is a required field`,
   }),
-  password: Joi.string().min(8).max(32).required().messages({
+  password: Joi.string().min(8).max(64).required().messages({
     'string.base': `"password" should be a type of 'text'`,
     'string.min': `"password" should have at least {#limit} characters`,
     'string.max': `"password" should have at most {#limit} characters`,
@@ -22,7 +22,7 @@ export const registerUserSchema = Joi.object({
 
 export const loginUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
-  password: Joi.string().min(8).max(32).required(),
+  password: Joi.string().min(8).max(64).required(),
 });
 
 // export const loginWithGoogleOAuthSchema = Joi.object({

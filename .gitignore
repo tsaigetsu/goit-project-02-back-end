@@ -5,4 +5,5 @@
 .vscode
 .DS_Store
 .idea
-.pullresquests-list.txt
+
+pullresquests-list.txt

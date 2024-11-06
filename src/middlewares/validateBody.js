@@ -26,3 +26,19 @@ export const validateBody = (schema) => async (req, res, next) => {
     next(error);
   }
 };
+
+export const validateUserBody = (userSchema) => {
+  const func = async (req, res, next) => {
+    try {
+      await userSchema.validateAsync(req.body, {
+        abortEarly: false,
+      });
+      next();
+    } catch (error) {
+      const validateError = createHttpError(400, `${error.message}`);
+      next(validateError);
+    }
+  };
+
+  return func;
+};
