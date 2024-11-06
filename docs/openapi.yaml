@@ -9,8 +9,6 @@ info:
     The app enables users to organize work, divide tasks into stages, collaborate, and track progress.
     With user registration, authentication, and different access levels, Task Pro ensures data security and provides access only to relevant information.
 servers:
-  - url: http://localhost:3000
-    description: Local server
   - url: https://goit-project-02-front-end-smoky.vercel.app
     description: Frontend application
   - url: https://goit-project-02-back-end.onrender.com

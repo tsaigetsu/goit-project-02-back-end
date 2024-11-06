@@ -27,6 +27,14 @@ requestBody:
             type: string
             format: binary
             description: Profile photo to upload
+          theme:
+            type: string
+            description: Application themes
+            enum:
+              - light
+              - violet
+              - dark
+            example: violet
 responses:
   '200':
     description: Profile updated successfully
@@ -56,6 +64,9 @@ responses:
                 photo:
                   type: string
                   example: https://res.cloudinary.com/.../user-photo.jpg
+                theme:
+                  type: string
+                  example: violet
                 createdAt:
                   type: string
                   format: date-time
