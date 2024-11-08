@@ -1367,6 +1367,7 @@
         "type": "object",
         "required": [
           "title",
+          "backgroundId",
           "iconId"
         ],
         "properties": {
