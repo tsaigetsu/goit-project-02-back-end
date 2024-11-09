@@ -5,6 +5,7 @@ const usersSchema = new Schema(
   {
     photo: {
       type: String,
+      default: null,
     },
     name: {
       type: String,
