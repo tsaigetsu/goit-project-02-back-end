@@ -4,10 +4,10 @@ import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import { TWO_HOURS, ONE_DAY } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
-// import {
-//   getFullNameFromGoogleTokenPayload,
-//   validateCode,
-// } from '../utils/googleOAuth2.js';
+import {
+  getFullNameFromGoogleTokenPayload,
+  validateCode,
+} from '../utils/googleOAuth2.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -48,37 +48,37 @@ export const logoutUser = async (sessionId, refreshToken) => {
   await SessionsCollection.deleteOne({ _id: sessionId, refreshToken });
 };
 
-// const createSession = () => {
-//   const accessToken = randomBytes(30).toString('base64');
-//   const refreshToken = randomBytes(30).toString('base64');
+const createSession = () => {
+  const accessToken = randomBytes(30).toString('base64');
+  const refreshToken = randomBytes(30).toString('base64');
 
-//   return {
-//     accessToken,
-//     refreshToken,
-//     accessTokenValidUntil: new Date(Date.now() + TWO_HOURS),
-//     refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
-//   };
-// };
+  return {
+    accessToken,
+    refreshToken,
+    accessTokenValidUntil: new Date(Date.now() + TWO_HOURS),
+    refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
+  };
+};
 
-// export const loginOrSignupWithGoogle = async (code) => {
-//   const loginTicket = await validateCode(code);
-//   const payload = loginTicket.getPayload();
-//   if (!payload) throw createHttpError(401);
+export const loginOrSignupWithGoogle = async (code) => {
+  const loginTicket = await validateCode(code);
+  const payload = loginTicket.getPayload();
+  if (!payload) throw createHttpError(401);
 
-//   let user = await UsersCollection.findOne({ email: payload.email });
-//   if (!user) {
-//     const password = await bcrypt.hash(randomBytes(10), 10);
-//     user = await UsersCollection.create({
-//       email: payload.email,
-//       name: getFullNameFromGoogleTokenPayload(payload),
-//       password,
-//     });
-//   }
+  let user = await UsersCollection.findOne({ email: payload.email });
+  if (!user) {
+    const password = await bcrypt.hash(randomBytes(10), 10);
+    user = await UsersCollection.create({
+      email: payload.email,
+      name: getFullNameFromGoogleTokenPayload(payload),
+      password,
+    });
+  }
 
-//   const newSession = createSession();
+  const newSession = createSession();
 
-//   return await SessionsCollection.create({
-//     userId: user._id,
-//     ...newSession,
-//   });
-// };
+  return await SessionsCollection.create({
+    userId: user._id,
+    ...newSession,
+  });
+};

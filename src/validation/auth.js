@@ -25,6 +25,6 @@ export const loginUserSchema = Joi.object({
   password: Joi.string().min(8).max(64).required(),
 });
 
-// export const loginWithGoogleOAuthSchema = Joi.object({
-//   code: Joi.string().required(),
-// });
+export const loginWithGoogleOAuthSchema = Joi.object({
+  code: Joi.string().required(),
+});
