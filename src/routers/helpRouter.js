@@ -5,6 +5,6 @@ import { sendHelpCommentController } from '../controllers/helpController.js';
 
 const router = express.Router();
 
-router.post('/help', sendHelpCommentController);
+router.post('/', sendHelpCommentController);
 
 export default router;
