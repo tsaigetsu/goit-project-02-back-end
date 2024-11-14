@@ -15,7 +15,7 @@ async function helpMail(comment, userEmail) {
   });
 
   const mailOptions = {
-    from: userEmail,
+    from: process.env.SMTP_USER,
     to: 'taskpro.project@gmail.com',
     subject: 'Запит на допомогу',
     text: `Коментар: ${comment}\nEmail для відповіді: ${userEmail}`,
