@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { emailRegexp } from '../constants/users.js';
 
 export const registerUserSchema = Joi.object({
-  name: Joi.string().min(2).max(32).required().messages({
+  name: Joi.string().min(2).max(18).required().messages({
     'string.base': `"name" should be a type of 'text'`,
     'string.min': `"name" should have at least {#limit} characters`,
     'string.max': `"name" should have at most {#limit} characters`,
@@ -25,6 +25,6 @@ export const loginUserSchema = Joi.object({
   password: Joi.string().min(8).max(64).required(),
 });
 
-export const loginWithGoogleOAuthSchema = Joi.object({
-  code: Joi.string().required(),
-});
+// export const loginWithGoogleOAuthSchema = Joi.object({
+//   code: Joi.string().required(),
+// });

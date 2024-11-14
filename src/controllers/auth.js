@@ -1,7 +1,22 @@
-import { registerUser } from '../services/auth.js';
-import { loginUser } from '../services/auth.js';
+import {
+  loginUser,
+  logoutUser,
+  // refreshSession,
+  registerUser,
+} from '../services/auth.js';
 import { ONE_DAY } from '../constants/index.js';
-import { logoutUser } from '../services/auth.js';
+
+// const setupSession = (res, session) => {
+//   res.cookie('refreshToken', session.refreshToken, {
+//     httpOnly: true,
+//     expire: new Date(Date.now() + session.refreshTokenValidUntil),
+//   });
+
+//   res.cookie('sessionId', session._id, {
+//     httpOnly: true,
+//     expire: new Date(Date.now() + session.refreshTokenValidUntil),
+//   });
+// };
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -25,6 +40,8 @@ export const loginUserController = async (req, res) => {
     expires: new Date(Date.now() + ONE_DAY),
   });
 
+  setupSession(res, session);
+
   res.json({
     status: 200,
     message: 'Successfully logged in an user!',
@@ -45,26 +62,44 @@ export const logoutUserController = async (req, res) => {
   res.status(204).send();
 };
 
-export const getGoogleAuthUrlController = async (req, res) => {
-  const url = generateAuthUrl();
-  res.json({
-    status: 200,
-    message: 'Successfully get Google OAuth url!',
-    data: {
-      url,
-    },
-  });
-};
+// export const getGoogleAuthUrlController = async (req, res) => {
+//   const url = generateAuthUrl();
+//   res.json({
+//     status: 200,
+//     message: 'Successfully get Google OAuth url!',
+//     data: {
+//       url,
+//     },
+//   });
+// };
 
-export const loginWithGoogleController = async (req, res) => {
-  const session = await loginOrSignupWithGoogle(req.body.code);
-  setupSession(res, session);
+// export const loginWithGoogleController = async (req, res) => {
+//   const session = await loginOrSignupWithGoogle(req.body.code);
+//   setupSession(res, session);
 
-  res.json({
-    status: 200,
-    message: 'Successfully logged in via Google OAuth!',
-    data: {
-      accessToken: session.accessToken,
-    },
-  });
-};
+//   res.json({
+//     status: 200,
+//     message: 'Successfully logged in via Google OAuth!',
+//     data: {
+//       accessToken: session.accessToken,
+//     },
+//   });
+// };
+
+// export const refreshController = async (req, res) => {
+//   const { refreshToken, sessionId } = req.cookies;
+//   const session = await refreshSession({
+//     refreshToken,
+//     sessionId,
+//   });
+
+//   setupSession(res, session);
+
+//   res.json({
+//     status: 200,
+//     message: 'Successfully refreshed a session!',
+//     data: {
+//       accessToken: session.accessToken,
+//     },
+//   });
+// };
