@@ -82,3 +82,29 @@ export const loginOrSignupWithGoogle = async (code) => {
     ...newSession,
   });
 };
+
+export const refreshSession = async ({ refreshToken, sessionId }) => {
+  const oldSession = await SessionsCollection.findOne({
+    _id: sessionId,
+    refreshToken,
+  });
+
+  if (!oldSession) {
+    throw createHttpError(401, 'Session not found');
+  }
+
+  if (new Date() > oldSession.refreshTokenValidUntil) {
+    throw createHttpError(401, 'Session token expired');
+  }
+
+  await SessionsCollection.deleteOne({ _id: sessionId });
+
+  const sessionData = createSession();
+
+  const userSession = await SessionsCollection.create({
+    userId: oldSession._id,
+    ...sessionData,
+  });
+
+  return userSession;
+};

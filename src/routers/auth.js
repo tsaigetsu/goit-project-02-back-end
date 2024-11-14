@@ -12,6 +12,7 @@ import {
   logoutUserController,
   loginUserController,
   registerUserController,
+  refreshController,
 } from '../controllers/auth.js';
 
 const router = Router();
@@ -27,6 +28,8 @@ router.post(
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserController),
 );
+
+router.post('/refresh', ctrlWrapper(refreshController));
 
 router.post('/logout', ctrlWrapper(logoutUserController));
 
