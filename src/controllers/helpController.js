@@ -18,11 +18,10 @@ async function sendHelpCommentController(req, res, next) {
 
   try {
     const result = await helpMail(comment, email);
-    res.status(200).json(result); // Повертаємо результат успіху
+    res.status(200).json(result);
   } catch (error) {
-    next(error); // Якщо сталася помилка, передаємо її в глобальний обробник
+    next(error);
   }
 }
 
 export { sendHelpCommentController };
-

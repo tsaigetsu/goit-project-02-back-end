@@ -7,22 +7,34 @@ dotenv.config();
 
 async function helpMail(comment, userEmail) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail', // Можна вибрати інший сервіс, якщо потрібно
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASSWORD,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
-  const mailOptions = {
-    from: process.env.SMTP_USER,
-    to: userEmail,
+  const mailOptionsToAdmin = {
+    from: process.env.SMTP_FROM,
+    to: 'taskpro.project@gmail.com',
     subject: 'Запит на допомогу',
-    text: `Коментар: ${comment}\nEmail для відповіді: ${userEmail}`,
+    text: `Коментар користувача: ${comment}\nEmail для відповіді: ${userEmail}`,
+  };
+
+  const mailOptionsToUser = {
+    from: process.env.SMTP_FROM,
+    to: userEmail,
+    subject: 'Ми отримали ваш запит про допомогу',
+    text: `Дякуємо за ваш запит! Ми отримали вашу допомогу і найближчим часом зв’яжемося з вами з рішенням. Коментар: "${comment}"`,
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptionsToAdmin);
+    await transporter.sendMail(mailOptionsToUser);
     return { success: true, message: 'Лист надіслано успішно' };
   } catch (error) {
     console.error('Помилка при надсиланні листа:', error);
