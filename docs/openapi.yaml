@@ -64,6 +64,9 @@ paths:
       $ref: ../swagger/paths/user/profile/get.yaml
     patch:
       $ref: ../swagger/paths/user/profile/patch.yaml
+  /help:
+    post: # /help POST запит
+      $ref: ../swagger/paths/help/post.yaml
 components:
   securitySchemes:
     bearerAuth:
