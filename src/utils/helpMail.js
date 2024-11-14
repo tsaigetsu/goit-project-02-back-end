@@ -1,19 +1,22 @@
 // src/utils/helpMail.js
 
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function helpMail(comment, userEmail) {
   const transporter = nodemailer.createTransport({
-    service: 'gmail', // або оберіть інший сервіс
+    service: 'gmail', // Можна вибрати інший сервіс, якщо потрібно
     auth: {
-      user: 'your.email@gmail.com', // Замість цього використайте свій email
-      pass: 'yourpassword',         // Спеціальний пароль додатку
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: userEmail, // Відправник - email користувача
-    to: 'taskpro.project@gmail.com',
+    from: process.env.SMTP_USER,
+    to: userEmail,
     subject: 'Запит на допомогу',
     text: `Коментар: ${comment}\nEmail для відповіді: ${userEmail}`,
   };
