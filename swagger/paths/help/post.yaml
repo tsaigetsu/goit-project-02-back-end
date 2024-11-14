@@ -1,0 +1,47 @@
+tags:
+  - Help
+summary: 'Send a comment for help'
+operationId: 'sendHelpComment'
+description: "Send an email with the comment and the user's email."
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          email:
+            type: string
+            example: 'user@example.com'
+          comment:
+            type: string
+            example: 'I need help with my account.'
+responses:
+  200:
+    description: 'Success'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: 'Лист надіслано успішно'
+  400:
+    description: 'Bad request'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: false
+            message:
+              type: string
+              example: 'Коментар та email є обов’язковими.'
+security:
+  - bearerAuth: []

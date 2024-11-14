@@ -4,7 +4,6 @@ import pino from 'pino-http';
 import { env } from './utils/env.js';
 import router from './routers/index.js';
 import errorHandler from './middlewares/errorHandler.js';
-import helpRouter from './routers/helpRouter.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import cookieParser from 'cookie-parser';
 import { ENV_VARS, UPLOAD_DIR } from './constants/index.js';
@@ -29,7 +28,6 @@ export const setupServer = () => {
 
   app.use('/uploads', express.static(UPLOAD_DIR));
   app.use('/api-docs', swaggerDocs());
-  app.use('/api/help', helpRouter);
 
   app.use(router);
 
