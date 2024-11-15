@@ -35,7 +35,7 @@ async function helpMail(comment, userEmail) {
   try {
     await transporter.sendMail(mailOptionsToAdmin);
     await transporter.sendMail(mailOptionsToUser);
-    return { success: true, message: 'Лист надіслано успішно' };
+    return { success: true, message: 'Mail delivered successful' };
   } catch (error) {
     console.error('Помилка при надсиланні листа:', error);
     throw new Error('Не вдалося надіслати лист');

@@ -1,21 +1,28 @@
 tags:
   - Help
 summary: 'Send a comment for help'
-operationId: 'sendHelpComment'
-description: "Send an email with the comment and the user's email."
+operationId: sendHelpComment
+description: "Send an email with the comment and the user's email"
+security:
+  - bearerAuth: []
 requestBody:
   required: true
   content:
     application/json:
       schema:
         type: object
+        required:
+          - email
+          - comment
         properties:
           email:
             type: string
             example: 'user@example.com'
+            description: 'Users email'
           comment:
             type: string
             example: 'I need help with my account.'
+            description: 'Users comment'
 responses:
   200:
     description: 'Success'
@@ -23,25 +30,26 @@ responses:
       application/json:
         schema:
           type: object
+          required:
+            - status
+            - message
+            - data
           properties:
-            success:
-              type: boolean
-              example: true
+            status:
+              type: integer
+              example: 200
             message:
               type: string
-              example: 'Лист надіслано успішно'
+              example: Mail delivered successful
+            data:
+              type: object
+              required:
+                - success
+              properties:
+                success:
+                  type: boolean
+                  example: true
   400:
-    description: 'Bad request'
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            success:
-              type: boolean
-              example: false
-            message:
-              type: string
-              example: 'Коментар та email є обов’язковими.'
-security:
-  - bearerAuth: []
+    $ref: ../../components/responses/400.yaml
+  401:
+    $ref: ../../components/responses/401.yaml
