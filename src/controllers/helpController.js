@@ -18,7 +18,8 @@ async function sendHelpCommentController(req, res, next) {
 
   try {
     const result = await helpMail(comment, email);
-    res.status(200).json(result);
+    const { message, success } = result;
+    res.status(200).json({ message, status: 200, data: {success} });
   } catch (error) {
     next(error);
   }
