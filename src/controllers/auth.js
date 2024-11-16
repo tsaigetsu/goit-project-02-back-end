@@ -20,12 +20,10 @@ const setupSession = (res, session) => {
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
-  const session = await loginUser(req.body);
-
-  // const session = await loginUser({
-  //   email: req.body.email,
-  //   password: req.body.password,
-  // });
+  const session = await loginUser({
+    email: req.body.email,
+    password: req.body.password,
+  });
 
   setupSession(res, session);
 
@@ -33,7 +31,7 @@ export const registerUserController = async (req, res) => {
     status: 200,
     message: 'Successfully registered a user!',
     data: { user },
-    // accessToken: session.accessToken,
+    accessToken: session.accessToken,
   });
 };
 
