@@ -22,12 +22,18 @@ export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
   const session = await loginUser(req.body);
 
+  // const session = await loginUser({
+  //   email: req.body.email,
+  //   password: req.body.password,
+  // });
+
   setupSession(res, session);
 
   res.status(200).json({
     status: 200,
     message: 'Successfully registered a user!',
     data: { user },
+    // accessToken: session.accessToken,
   });
 };
 

@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 export const createTaskSchema = Joi.object({
   title: Joi.string().min(2).max(32).required(),
-  description: Joi.string().min(2).max(100).required(),
+  description: Joi.string().min(2).max(300).required(),
   deadline: Joi.string().min(2).max(32).required(),
   priority: Joi.string()
     .valid('without priority', 'low', 'medium', 'high')
@@ -14,7 +14,7 @@ export const createTaskSchema = Joi.object({
 
 export const updateTaskSchema = Joi.object({
   title: Joi.string().min(2).max(32),
-  description: Joi.string().min(2).max(100),
+  description: Joi.string().min(2).max(300),
   deadline: Joi.string().min(2).max(32),
   priority: Joi.string()
     .valid('without priority', 'low', 'medium', 'high')
