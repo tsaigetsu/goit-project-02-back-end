@@ -8,8 +8,7 @@ export const ENV_VARS = {
   MONGODB_DB: 'MONGODB_DB',
 };
 
-// export const TWO_HOURS = 2 * 60 * 60 * 1000;
-export const TWO_HOURS = 2 * 60 * 1000;
+export const TWO_HOURS = 2 * 60 * 60 * 1000;
 export const ONE_DAY = 24 * 60 * 60 * 1000;
 
 export const JWT_SECRET = 'JWT_SECRET';
