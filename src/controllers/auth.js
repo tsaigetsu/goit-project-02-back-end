@@ -1,7 +1,7 @@
 import {
   loginUser,
   logoutUser,
-  // refreshSession,
+  refreshSession,
   registerUser,
 } from '../services/auth.js';
 // import { ONE_DAY } from '../constants/index.js';
@@ -93,20 +93,20 @@ export const logoutUserController = async (req, res) => {
 //   });
 // };
 
-// export const refreshController = async (req, res) => {
-//   const { refreshToken, sessionId } = req.cookies;
-//   const session = await refreshSession({
-//     refreshToken,
-//     sessionId,
-//   });
+export const refreshController = async (req, res) => {
+  const { refreshToken, sessionId } = req.cookies;
+  const session = await refreshSession({
+    refreshToken,
+    sessionId,
+  });
 
-//   setupSession(res, session);
+  setupSession(res, session);
 
-//   res.json({
-//     status: 200,
-//     message: 'Successfully refreshed a session!',
-//     data: {
-//       accessToken: session.accessToken,
-//     },
-//   });
-// };
+  res.json({
+    status: 200,
+    message: 'Successfully refreshed a session!',
+    data: {
+      accessToken: session.accessToken,
+    },
+  });
+};
