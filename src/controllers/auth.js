@@ -32,7 +32,7 @@ export const registerUserController = async (req, res) => {
     message: 'Successfully registered a user!',
     data: { user },
     accessToken: session.accessToken,
-    refreshToken: session.refreshToken,
+    // refreshToken: session.refreshToken,
   });
 };
 
@@ -55,7 +55,7 @@ export const loginUserController = async (req, res) => {
     message: 'Successfully logged in an user!',
     data: {
       accessToken: session.accessToken,
-      refreshToken: session.refreshToken,
+      // refreshToken: session.refreshToken,
     },
   });
 };
