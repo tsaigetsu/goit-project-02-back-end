@@ -11,11 +11,18 @@ import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 const PORT = Number(env(ENV_VARS.PORT, 3000));
 
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
 export const setupServer = () => {
   const app = express();
   app.use(express.json());
 
-  app.use(cors());
+  app.use(cors(corsOptions));
   app.use(cookieParser());
 
   app.use(
