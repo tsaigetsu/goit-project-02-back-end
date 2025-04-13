@@ -20,10 +20,10 @@ const corsOptions = {
 
 export const setupServer = () => {
   const app = express();
-  app.use(express.json());
-
   app.use(cors(corsOptions));
+
   app.use(cookieParser());
+  app.use(express.json());
 
   app.use(
     pino({
