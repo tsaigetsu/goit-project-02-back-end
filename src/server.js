@@ -12,7 +12,10 @@ import { swaggerDocs } from './middlewares/swaggerDocs.js';
 const PORT = Number(env(ENV_VARS.PORT, 3000));
 
 const corsOptions = {
-  origin: 'https://goit-project-02-front-end-smoky.vercel.app',
+  origin: [
+    'http://localhost:5173',
+    'https://goit-project-02-front-end-smoky.vercel.app',
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
